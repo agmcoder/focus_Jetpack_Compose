@@ -25,7 +25,10 @@ import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.tooling.preview.Preview
 
 import androidx.compose.ui.unit.dp
+import com.example.focus_jetpack_compose.ui.components.CustomButton
+import com.example.focus_jetpack_compose.ui.components.CustomOutlinedTextField
 import com.example.focus_jetpack_compose.ui.theme.Focus_Jetpack_ComposeTheme
+import com.example.focus_jetpack_compose.util.Direction
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -63,58 +66,6 @@ class MainActivity : ComponentActivity() {
     }
 }
 
-@Composable
-fun CustomOutlinedTextField(title: String){
-    val textFieldValue = rememberSaveable { mutableStateOf("") }
-    OutlinedTextField(
-        placeholder = {Text(text = title)},
-        label = {Text(text = title)},
-        modifier = Modifier.padding(vertical = 20.dp),
-        value = textFieldValue.value,
-        onValueChange = {
-            textFieldValue.value = it
-        })
-}
-@androidx.compose.runtime.Composable
-fun CustomButton(direction: Direction) {
-    val focusManager = LocalFocusManager.current
-    Button(
-        modifier = Modifier
-            .height(100.dp)
-            .width(100.dp)
-            .clip(RoundedCornerShape(20.dp))
-            .padding(vertical = 10.dp),
-        onClick = {
-            if (direction == Direction.UP) {
-                focusManager.moveFocus(FocusDirection.Up)
-
-            } else {
-                focusManager.moveFocus(FocusDirection.Down)
-
-            }
-
-        }
 
 
-    ) {
-        if (direction == Direction.UP)
-            Icon(
-                imageVector = Icons.Outlined.KeyboardArrowUp,
-                "",
-                modifier = Modifier.fillMaxSize()
-            )
-        else
-            Icon(
-                imageVector = Icons.Outlined.KeyboardArrowDown,
-                "",
-                modifier = Modifier.fillMaxSize()
 
-            )
-    }
-
-}
-
-enum class Direction {
-    UP,
-    DOWN
-}
