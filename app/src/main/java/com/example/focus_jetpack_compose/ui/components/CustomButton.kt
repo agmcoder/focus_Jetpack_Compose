@@ -16,7 +16,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.focus.FocusDirection
 import androidx.compose.ui.platform.LocalFocusManager
 import androidx.compose.ui.unit.dp
-import com.example.focus_jetpack_compose.Direction
+import com.example.focus_jetpack_compose.util.Direction
 
 @Composable
 fun CustomButton(direction: Direction) {
